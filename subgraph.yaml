@@ -6,8 +6,8 @@ dataSources:
     name: PositionManager
     source:
       abi: PositionManager
-      address: "0xC4114D90F51960854ab574297Cf7CC131d445F29"
-      startBlock: 9888337
+      address: "0x59710a4149A27585f1841b5783ac704a08274e64"
+      startBlock: 9367126
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -46,13 +46,13 @@ dataSources:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
       file: ./src/mappings/position-manager.ts
-    network: goerli
+    network: base
   - kind: ethereum
     name: ERC20PoolFactory
     source:
       abi: ERC20PoolFactory
-      address: "0x14F2474fB5ea9DF82059053c4F85A8C803Ab10C9"
-      startBlock: 9888337
+      address: "0x214f62B5836D83f3D6c4f71F174209097B1A779C"
+      startBlock: 9367126
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -74,13 +74,13 @@ dataSources:
         - event: PoolCreated(address,bytes32)
           handler: handlePoolCreated
       file: ./src/mappings/erc-20-pool-factory.ts
-    network: goerli
+    network: base
   - kind: ethereum
     name: ERC721PoolFactory
     source:
       abi: ERC721PoolFactory
-      address: "0xb0d1c875B240EE9f6C2c3284a31b10f1EC6De7d2"
-      startBlock: 9888337
+      address: "0xeefEC5d1Cc4bde97279d01D88eFf9e0fEe981769"
+      startBlock: 9367126
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -102,13 +102,13 @@ dataSources:
         - event: PoolCreated(address,bytes32)
           handler: handlePoolCreated
       file: ./src/mappings/erc-721-pool-factory.ts
-    network: goerli
+    network: base
   - kind: ethereum
     name: GrantFund
     source:
       abi: GrantFund
-      address: "0x881b4dFF6C72babA6f5eA60f34A61410c1EA1ec2"
-      startBlock: 9297080
+      address: "0x0000000000000000000000000000000000000000"
+      startBlock: 8797468
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -140,14 +140,14 @@ dataSources:
         - event: VoteCast(indexed address,uint256,uint8,uint256,string)
           handler: handleVoteCast
       file: ./src/mappings/grant-fund.ts
-    network: goerli
+    network: base
   - kind: ethereum
     name: AjnaToken
-    network: goerli
+    network: base
     source:
       abi: AjnaToken
-      address: "0xaadebCF61AA7Da0573b524DE57c67aDa797D46c5"
-      startBlock: 9297080
+      address: "0xf0f326af3b1Ed943ab95C29470730CC8Cf66ae47"
+      startBlock: 3055193
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -166,11 +166,11 @@ dataSources:
       file: ./src/mappings/ajna-token.ts
   - kind: ethereum
     name: BurnWrappedAjna
-    network: goerli
+    network: base
     source:
       abi: BurnWrappedAjna
-      address: "0xE38DFd7aB36806B882bD7332a8aE454f2273D015"
-      startBlock: 9445944
+      address: "0x0000000000000000000000000000000000000000"
+      startBlock: 3055193
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -288,7 +288,7 @@ templates:
         - event: UpdateInterestRate(uint256,uint256)
           handler: handleUpdateInterestRate
       file: ./src/mappings/erc-20-pool.ts
-    network: goerli
+    network: base
   - kind: ethereum
     name: ERC721Pool
     source:
@@ -397,4 +397,4 @@ templates:
         - event: UpdateInterestRate(uint256,uint256)
           handler: handleUpdateInterestRate
       file: ./src/mappings/erc-721-pool.ts
-    network: goerli
+    network: base
