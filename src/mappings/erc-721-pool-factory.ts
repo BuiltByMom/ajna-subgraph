@@ -104,7 +104,7 @@ export function handlePoolCreated(event: PoolCreatedEvent): void {
 
       for (let i = 0; i < tokenIdsHexString.length; i += chunkSize) {
         let hexChunk = tokenIdsHexString.substring(i, i + chunkSize);
-        let bigIntValue = BigInt.fromI64(I64.parseInt(hexChunk, 16));
+        let bigIntValue = BigInt.fromU32(U32.parseInt(hexChunk, 16));
         tokenIds.push(bigIntValue);
       }
     }
