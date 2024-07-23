@@ -747,7 +747,7 @@ export function _handleBucketBankruptcy(event: ethereum.Event, index: BigInt, lp
             const lend = Lend.load(lendId)
             if (!lend) {
                 // If somehow the lend entity is not found, log an error and continue
-                log.error("_handleBucketBankruptcy: lend entity with id {} not found", [lendId.toString()])
+                log.warning("_handleBucketBankruptcy: lend entity with id {} not found", [lendId.toHexString()])
                 continue
             }
             lend.lpb = ZERO_BD
