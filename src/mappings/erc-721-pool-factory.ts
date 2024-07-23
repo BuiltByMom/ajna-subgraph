@@ -67,11 +67,9 @@ export function handlePoolCreated(event: PoolCreatedEvent): void {
      ** Looking for collateralToken + quoteToken + (62 zeroes)80 combination to assume start of PoolData
      ** Required because of possible multisig or contract calls that may have different transaction data
      *************************************************************************/
-    const startOfPoolData = hexData.indexOf(
-      hexCollateralAddress +
-        hexQuoteAddress.padStart(64, "0") +
-        "80".padStart(64, "0")
-    );
+    const lowercasedHexData = hexData.toLowerCase();
+    const lookingFor = (hexCollateralAddress + hexQuoteAddress.padStart(64, "0") + "80".padStart(64, "0")).toLowerCase()
+    const startOfPoolData = lowercasedHexData.indexOf(lookingFor);
 
     /**************************************************************************
      ** collateralToken length (without zeroes) + quoteToken length + (62 zeroes)80 + interestRate legth
