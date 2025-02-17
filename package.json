@@ -18,5 +18,8 @@
   },
   "devDependencies": {
     "matchstick-as": "0.5.0"
+  },
+  "resolutions": {
+    "elliptic": "6.6.1"
   }
 }
