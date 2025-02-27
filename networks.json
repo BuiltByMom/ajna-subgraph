@@ -362,5 +362,31 @@
       "address": "0x0000000000000000000000000000000000000000",
       "startBlock": 43807734
     }
+  },
+  "hemi": {
+    "ERC20PoolFactory": {
+      "address": "0xE47b3D287Fc485A75146A59d459EC8CD0F8E5021",
+      "startBlock": 363925
+    },
+    "ERC721PoolFactory": {
+      "address": "0x3E0126d3B10596b7E13e42E34B7cBD0E9735e4c0",
+      "startBlock": 363926
+    },
+    "PositionManager": {
+      "address": "0xCD7496b83D92c5e4F2CD9C90ccC5A5B3a578cF95",
+      "startBlock": 363926
+    },
+    "GrantFund": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "startBlock": 363926
+    },
+    "AjnaToken": {
+      "address": "0x63D367531B460Da78a9EBBAF6c1FBFC397E5d40A",
+      "startBlock": 363002
+    },
+    "BurnWrappedAjna": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "startBlock": 363002
+    }
   }
 }

@@ -43,6 +43,8 @@ poolInfoUtilsAddressTable.set('rari', Address.fromString('0xe85958CD5d59755470F6
 poolInfoUtilsAddressTable.set('linea', Address.fromString('0x3AFcEcB6A943746eccd72eb6801E534f8887eEA1'))
 poolInfoUtilsAddressTable.set('avalanche', Address.fromString('0x9e407019C07b50e8D7C2d0E2F796C4eCb0F485b3'))
 poolInfoUtilsAddressTable.set('bsc', Address.fromString('0x81557781862D3e0FF7559080C2A9AE1F08Ee8421'))
+poolInfoUtilsAddressTable.set('hemi', Address.fromString('0xab57F608c37879360D622C32C6eF3BBa79AA667D'))
+
 export const poolInfoUtilsMulticallAddressTable = new TypedMap<string, Address>()
 poolInfoUtilsMulticallAddressTable.set('mainnet', Address.fromString('0xe4e553243264f2bF7C135F1eC3a8c09078731227'))
 poolInfoUtilsMulticallAddressTable.set('arbitrum-one', Address.fromString('0xCcaf0542c78A3A5e55f99630a2B126A5BAA44FC3'))
@@ -58,6 +60,8 @@ poolInfoUtilsMulticallAddressTable.set('rari', Address.fromString('0x26694369Dc3
 poolInfoUtilsMulticallAddressTable.set('linea', Address.fromString('0x38d55d1f2100dB1423C4907Aa907D47B4670d5EF'))
 poolInfoUtilsMulticallAddressTable.set('avalanche', Address.fromString('0xD2b45DD650141a42fF948EC5B99D9E8DF6799B8f'))
 poolInfoUtilsMulticallAddressTable.set('bsc', Address.fromString('0x56A08a72197f86625B0Ec64cA675b2b0568AD613'))
+poolInfoUtilsMulticallAddressTable.set('hemi', Address.fromString('0x165fd403FC5709293B78E5A2C8f36A47187BBde0'))
+
 export const positionManagerAddressTable = new TypedMap<string, Address>()
 positionManagerAddressTable.set('mainnet', Address.fromString('0x87B0F458d8F1ACD28A83A748bFFbE24bD6B701B1'))
 positionManagerAddressTable.set('arbitrum-one', Address.fromString('0x9A0BE971530Ed2B53597AC9155AC050ca1Bab7A3'))
@@ -73,6 +77,7 @@ positionManagerAddressTable.set('rari', Address.fromString('0xBb4a65d74893C14060
 positionManagerAddressTable.set('linea', Address.fromString('0x083BDB49dBA6f5A225a20893e043220526DeCf54'))
 positionManagerAddressTable.set('avalanche', Address.fromString('0x0bf183a32614b3Cd11C0268441D96047D05967e0'))
 positionManagerAddressTable.set('bsc', Address.fromString('0x2DB531409656B4E1711EE89E6cB9A4a09aC0AAD7'))
+positionManagerAddressTable.set('hemi', Address.fromString('0xCD7496b83D92c5e4F2CD9C90ccC5A5B3a578cF95'))
 
 // GrantFund constants
 export const CHALLENGE_PERIOD_LENGTH    = BigInt.fromI32(50400)
