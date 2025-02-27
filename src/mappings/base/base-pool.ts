@@ -739,27 +739,26 @@ export function _handleBucketBankruptcy(event: ethereum.Event, index: BigInt, lp
     bucketBankruptcy.bucket = bucketId
     bucketBankruptcy.pool = pool.id
 
+    // Create a new array to store valid lend IDs
+    let validLends: Bytes[] = []
+
     // iterate through all bucket lends and set lend.lpb to zero
     for (let i = 0; i < bucket.lends.length; i++) {
         const lendId = bucket.lends[i]
 
-        if (lendId) {
-            const lend = Lend.load(lendId)
-            if (!lend) {
-                // If somehow the lend entity is not found, log an error and continue
-                log.warning("_handleBucketBankruptcy: lend entity with id {} not found", [lendId.toHexString()])
-                continue
-            }
+        if (lendId && Lend.load(lendId)) {
+            const lend = Lend.load(lendId)!
             lend.lpb = ZERO_BD
             updateBucketLends(bucket, lend)
             updateAccountLends(loadOrCreateAccount(lend.lender), lend)
             // remove lend from store
             saveOrRemoveLend(lend)
-        } else {
-            // if lendId is null for some reason just remove it from bucket
-            bucket.lends.splice(i, 1)
+            validLends.push(lendId)
         }
     }
+
+    // Update bucket.lends with only valid lends
+    bucket.lends = validLends
 
     // iterate through all bucket positionLends and set positionLend.lpb to zero
     for (let i = 0; i < bucket.positionLends.length; i++) {
