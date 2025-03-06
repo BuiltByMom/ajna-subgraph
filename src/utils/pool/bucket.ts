@@ -3,7 +3,7 @@ import { Address, BigDecimal, BigInt, Bytes, dataSource, log } from "@graphproto
 import { Bucket, Lend, PositionLend } from "../../../generated/schema"
 import { PoolInfoUtils } from '../../../generated/templates/ERC20Pool/PoolInfoUtils'
 
-import { poolInfoUtilsAddressTable, ONE_BD, ZERO_BD } from "../constants"
+import { getPoolInfoUtilsAddress, ONE_BD, ZERO_BD } from "../constants"
 import { indexToPrice, wadToDecimal } from "../convert"
 
 export function getBucketId(pool: Bytes, index: u32): Bytes {
@@ -29,7 +29,7 @@ export class BucketInfo {
     }
 }
 export function getBucketInfo(pool: Bytes, index: u32): BucketInfo {
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolAddress = Address.fromBytes(pool)
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
     const bucketInfoResult = poolInfoUtilsContract.bucketInfo(poolAddress, BigInt.fromU32(index))

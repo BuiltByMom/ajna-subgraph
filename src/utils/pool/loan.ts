@@ -2,7 +2,7 @@ import { Address, BigDecimal, BigInt, Bytes, dataSource, store } from "@graphpro
 import { PoolInfoUtils } from "../../../generated/templates/ERC20Pool/PoolInfoUtils"
 
 import { Loan }    from "../../../generated/schema"
-import { poolInfoUtilsAddressTable, ONE_BD, ZERO_BD, ZERO_BI } from "../constants"
+import { getPoolInfoUtilsAddress, ONE_BD, ZERO_BD, ZERO_BI } from "../constants"
 import { ERC20Pool } from '../../../generated/templates/ERC20Pool/ERC20Pool'
 import { ERC721Pool } from "../../../generated/templates/ERC721Pool/ERC721Pool"
 
@@ -57,7 +57,7 @@ export class BorrowerInfo {
   }
 }
 export function getBorrowerInfo(borrower: Bytes, poolId: Bytes): BorrowerInfo {
-  const poolInfoUtilsAddress  = poolInfoUtilsAddressTable.get(dataSource.network())!
+  const poolInfoUtilsAddress  = getPoolInfoUtilsAddress(dataSource.network())!
   const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
   const borrowerInfoResult    = poolInfoUtilsContract.borrowerInfo(Address.fromBytes(poolId), Address.fromBytes(borrower))
 

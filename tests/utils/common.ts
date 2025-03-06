@@ -9,7 +9,7 @@ import { createERC721PoolFactoryPoolCreatedEvent } from "./erc-721-pool-factory-
 
 import { BucketInfo } from "../../src/utils/pool/bucket"
 import { wadToDecimal } from "../../src/utils/convert"
-import { positionManagerAddressTable, poolInfoUtilsAddressTable, ZERO_BI, ONE_BI, ONE_WAD_BI, ZERO_ADDRESS, MAX_PRICE_INDEX } from "../../src/utils/constants"
+import { ZERO_BI, ONE_BI, ONE_WAD_BI, ZERO_ADDRESS, MAX_PRICE_INDEX } from "../../src/utils/constants"
 import { BurnInfo, DebtInfo, LoansInfo, PoolPricesInfo, PoolUtilizationInfo, ReservesInfo } from "../../src/utils/pool/pool"
 import { AuctionInfo, AuctionStatus } from "../../src/utils/pool/liquidation"
 import { BorrowerInfo } from "../../src/utils/pool/loan"

@@ -6,7 +6,7 @@ import { ERC721Pool } from "../../../generated/templates/ERC721Pool/ERC721Pool"
 import { PoolInfoUtils } from "../../../generated/templates/ERC20Pool/PoolInfoUtils"
 
 import { wadToDecimal } from "../convert"
-import { ONE_BI, ZERO_ADDRESS, ZERO_BD, ZERO_BI, poolInfoUtilsAddressTable } from "../constants"
+import { ONE_BI, ZERO_ADDRESS, ZERO_BD, ZERO_BI, getPoolInfoUtilsAddress } from "../constants"
 
 export function getLiquidationAuctionId(poolId: Bytes, loanId: Bytes, kickBlock: BigInt): Bytes {
     return poolId.concat(Bytes.fromUTF8('|' + loanId.toString() + '|' + kickBlock.toString()))
@@ -175,7 +175,7 @@ export class AuctionStatus {
     }
 }
 export function getAuctionStatus(pool: Pool, borrower: Address): AuctionStatus {
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
     const result = poolInfoUtilsContract.auctionStatus(Address.fromBytes(pool.id), borrower)
     return new AuctionStatus(

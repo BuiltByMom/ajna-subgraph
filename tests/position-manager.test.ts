@@ -18,7 +18,7 @@ import { mockGetLPBValueInQuote, mockGetLenderInfo, mockGetPoolKey, mockGetPosit
 import { Lend } from "../generated/schema"
 import { getLendId } from "../src/utils/pool/lend"
 import { getBucketId } from "../src/utils/pool/bucket"
-import { FIVE_PERCENT_BI, TWO_BI, ZERO_BI, positionManagerAddressTable } from "../src/utils/constants"
+import { FIVE_PERCENT_BI, TWO_BI, ZERO_BI, getPositionManagerAddress } from "../src/utils/constants"
 import { getPositionLendId } from "../src/utils/position"
 
 // Tests structure (matchstick-as >=0.5.0)
@@ -270,7 +270,7 @@ describe("Describe entity assertions", () => {
     const lender = Address.fromString("0x0000000000000000000000000000000000000020")
     const pool = Address.fromString("0x0000000000000000000000000000000000000001")
     const tokenId = BigInt.fromI32(234)
-    const tokenContractAddress = positionManagerAddressTable.get(dataSource.network())!
+    const tokenContractAddress = getPositionManagerAddress(dataSource.network())!
     const indexes:BigInt[] = [BigInt.fromI32(5000), BigInt.fromI32(5500)]
     const fromIndex = BigInt.fromI32(5000)
     const toIndex = BigInt.fromI32(4000)

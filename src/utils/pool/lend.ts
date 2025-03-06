@@ -2,7 +2,7 @@ import { Address, BigDecimal, BigInt, Bytes, dataSource, store } from "@graphpro
 import { Bucket, Lend } from "../../../generated/schema"
 import { PoolInfoUtils } from "../../../generated/templates/ERC20Pool/PoolInfoUtils"
 
-import { poolInfoUtilsAddressTable, ZERO_BD, ZERO_BI } from "../constants"
+import { getPoolInfoUtilsAddress, ZERO_BD, ZERO_BI } from "../constants"
 import { decimalToWad, wadToDecimal } from "../convert"
 
 // return the max of the two deposit times
@@ -34,7 +34,7 @@ export function loadOrCreateLend(bucketId: Bytes, lendId: Bytes, poolId: Bytes, 
 
 export function lpbValueInQuote(pool: Bytes, bucketIndex: u32, lpAmount: BigDecimal): BigDecimal {
     const poolAddress = Address.fromBytes(pool)
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
 
     const quoteTokenAmount = poolInfoUtilsContract.lpToQuoteTokens(

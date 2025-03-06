@@ -6,13 +6,10 @@ import { ERC721Pool } from '../../../generated/templates/ERC721Pool/ERC721Pool'
 import { PoolInfoUtils } from '../../../generated/templates/ERC20Pool/PoolInfoUtils'
 import { PoolInfoUtilsMulticall } from '../../../generated/templates/ERC20Pool/PoolInfoUtilsMulticall'
 
-import { MAX_PRICE, MAX_PRICE_INDEX, ONE_BD, poolInfoUtilsAddressTable, poolInfoUtilsMulticallAddressTable, TEN_BI, ZERO_ADDRESS, ZERO_BD, ZERO_BI } from "../constants"
+import { MAX_PRICE, MAX_PRICE_INDEX, ONE_BD, getPoolInfoUtilsAddress, getPoolInfoUtilsMulticallAddress, TEN_BI, ZERO_ADDRESS, ZERO_BD, ZERO_BI } from "../constants"
 import { addressToBytes, decimalToWad, wadToDecimal } from '../convert';
-import { getTokenBalance } from '../token-erc20'
-import { getTokenBalance as getERC721TokenBalance } from '../token-erc721'
 import { wmul, wdiv } from '../math'
 import { ERC721PoolFactory } from '../../../generated/ERC721PoolFactory/ERC721PoolFactory'
-import { BucketInfo } from './bucket';
 
 
 export function getPoolAddress(poolId: Bytes): Address {
@@ -72,7 +69,7 @@ export class RatesAndFees {
 }
 
 export function getRatesAndFees(poolId: Bytes): RatesAndFees {
-  const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+  const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
   const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
   const poolAddress = Address.fromBytes(poolId)
 
@@ -108,7 +105,7 @@ export class LoansInfo {
     }
 }
 export function getPoolLoansInfo(pool: Pool): LoansInfo {
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
     const loansInfoResult = poolInfoUtilsContract.poolLoansInfo(Address.fromBytes(pool.id))
 
@@ -139,7 +136,7 @@ export class PoolPricesInfo {
     }
 }
 export function getPoolPricesInfo(pool: Pool): PoolPricesInfo {
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
     const pricesInfoResult = poolInfoUtilsContract.poolPricesInfo(Address.fromBytes(pool.id))
 
@@ -169,7 +166,7 @@ export class ReservesInfo {
     }
 }
 export function getPoolReservesInfo(pool: Pool): ReservesInfo {
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
     const reservesInfoResult = poolInfoUtilsContract.poolReservesInfo(Address.fromBytes(pool.id))
 
@@ -196,7 +193,7 @@ export class PoolUtilizationInfo {
     }
 }
 export function getPoolUtilizationInfo(pool: Pool): PoolUtilizationInfo {
-    const poolInfoUtilsAddress = poolInfoUtilsAddressTable.get(dataSource.network())!
+    const poolInfoUtilsAddress = getPoolInfoUtilsAddress(dataSource.network())!
     const poolInfoUtilsContract = PoolInfoUtils.bind(poolInfoUtilsAddress)
     const poolUtilizationInfoResult = poolInfoUtilsContract.poolUtilizationInfo(Address.fromBytes(pool.id))
 
@@ -276,7 +273,7 @@ export class PoolDetails {
   }
 }
 export function getPoolDetailsMulticall(pool: Pool): PoolDetails {
-  const poolInfoUtilsMulticallAddress = poolInfoUtilsMulticallAddressTable.get(dataSource.network())!
+  const poolInfoUtilsMulticallAddress = getPoolInfoUtilsMulticallAddress(dataSource.network())!
   const poolInfoUtilsMulticallContract = PoolInfoUtilsMulticall.bind(poolInfoUtilsMulticallAddress)
   const poolDetailsMulticallResult = poolInfoUtilsMulticallContract.poolDetailsMulticall(Address.fromBytes(pool.id))
 
@@ -337,7 +334,7 @@ export class PoolBalanceDetails {
   }
 }
 export function getPoolBalanceDetails(pool: Pool, meaningFulIndex: BigInt): PoolBalanceDetails {
-  const poolInfoUtilsMulticallAddress = poolInfoUtilsMulticallAddressTable.get(dataSource.network())!
+  const poolInfoUtilsMulticallAddress = getPoolInfoUtilsMulticallAddress(dataSource.network())!
   const poolInfoUtilsMulticallContract = PoolInfoUtilsMulticall.bind(poolInfoUtilsMulticallAddress)
   const poolBalanceDetailsResult = poolInfoUtilsMulticallContract.poolBalanceDetails(Address.fromBytes(pool.id), meaningFulIndex, Address.fromBytes(pool.quoteToken), Address.fromBytes(pool.collateralToken), pool.poolType != 'Fungible')
 
