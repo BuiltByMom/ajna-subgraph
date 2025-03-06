@@ -1,7 +1,7 @@
 import { Address, BigInt, Bytes, dataSource, log, store } from "@graphprotocol/graph-ts"
 
 import { Bucket, Position, PositionLend, Token } from "../../generated/schema"
-import { ONE_BI, ZERO_BD, ZERO_BI, positionManagerAddressTable } from "../utils/constants"
+import { ONE_BI, ZERO_BD, ZERO_BI, getPositionManagerAddress } from "../utils/constants"
 import { addressToBytes } from "../utils/convert"
 import { getTokenName, getTokenSymbol, getTokenURI } from "./token-erc721"
 import { PositionManager } from "../../generated/PositionManager/PositionManager"
@@ -32,7 +32,7 @@ export function loadOrCreateLPToken(tokenAddress: Address): Token {
 
 export function loadOrCreatePosition(tokenId: BigInt): Position {
   const byteTokenId = bigIntToBytes(tokenId)
-  const positionManagerAddress = positionManagerAddressTable.get(dataSource.network())!
+  const positionManagerAddress = getPositionManagerAddress(dataSource.network());
   let position = Position.load(byteTokenId)
   if (position == null) {
     position = new Position(byteTokenId) as Position
@@ -124,7 +124,7 @@ export function saveOrRemovePositionLend(positionLend: PositionLend): void {
 /*******************************/
 
 export function getPoolForToken(tokenId: BigInt): Address {
-  const positionManagerAddress = positionManagerAddressTable.get(dataSource.network())!
+  const positionManagerAddress = getPositionManagerAddress(dataSource.network())!
   const positionManagerContract = PositionManager.bind(positionManagerAddress);
   return positionManagerContract.poolKey(tokenId)
 }
@@ -138,7 +138,7 @@ export class PositionInfo {
   }
 }
 export function getPositionInfo(tokenId: BigInt, bucketIndex: BigInt): PositionInfo {
-  const positionManagerAddress = positionManagerAddressTable.get(dataSource.network())!
+  const positionManagerAddress = getPositionManagerAddress(dataSource.network())!
   const positionManagerContract = PositionManager.bind(positionManagerAddress);
   const positionInfoResult = positionManagerContract.getPositionInfo(tokenId, bucketIndex)
 
